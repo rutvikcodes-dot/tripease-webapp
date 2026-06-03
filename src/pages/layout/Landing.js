@@ -1,8 +1,41 @@
-import { Badge, Button, Container, Grid, Group, NumberInput, Paper, Select, Stack, Text, Title } from "@mantine/core";
+import {
+  Badge,
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Group,
+  NumberInput,
+  Paper,
+  Select,
+  SimpleGrid,
+  Stack,
+  Text,
+  ThemeIcon,
+  Title,
+} from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import dayjs from "dayjs";
-import { CalendarDays, MapPin, Search, ShieldCheck, Star, Users } from "lucide-react";
+import { CalendarDays, MapPin, Route, Search, ShieldCheck, Sparkles, Star, Users } from "lucide-react";
 import { useHotel } from "../hotels/provider";
+
+const LANDING_HIGHLIGHTS = [
+  {
+    icon: <Route size={18} />,
+    title: "Smooth planning",
+    description: "Compare stays, dates, and guest needs in one place.",
+  },
+  {
+    icon: <ShieldCheck size={18} />,
+    title: "Secure booking",
+    description: "Book with confidence and keep your trip details ready.",
+  },
+  {
+    icon: <Sparkles size={18} />,
+    title: "Curated picks",
+    description: "Find stays that feel right for your next escape.",
+  },
+];
 
 const Landing = () => {
   const { cities, location, setLocation, checkIn, setCheckIn, checkOut, setCheckOut, adults, setAdults, handleSearch } =
@@ -23,13 +56,42 @@ const Landing = () => {
         flex: 1,
         minHeight: 0,
         backgroundImage:
-          "linear-gradient(90deg, rgba(10, 23, 42, 0.82), rgba(10, 23, 42, 0.34)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2000&auto=format&fit=crop')",
+          "linear-gradient(115deg, rgba(6, 20, 38, 0.86), rgba(14, 116, 144, 0.56), rgba(244, 114, 182, 0.34)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2000&auto=format&fit=crop')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
         alignItems: "center",
       }}
     >
+      <style>
+        {`
+          @keyframes tripEaseShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+
+          .trip-ease-highlight {
+            transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+          }
+
+          .trip-ease-highlight svg {
+            transition: transform 180ms ease;
+          }
+
+          .trip-ease-highlight:hover {
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.22);
+            border-color: rgba(103, 232, 249, 0.72);
+            box-shadow: 0 18px 42px rgba(34, 211, 238, 0.2);
+          }
+
+          .trip-ease-highlight:hover svg {
+            transform: rotate(-8deg) scale(1.12);
+          }
+        `}
+      </style>
+
       <Container size="xl" w="100%" py={{ base: "xl", md: 48 }}>
         <Grid align="center" gutter="xl">
           <Grid.Col span={{ base: 12, md: 6 }}>
@@ -38,8 +100,11 @@ const Landing = () => {
                 <Badge leftSection={<Star size={13} />} variant="white" color="dark">
                   Curated stays
                 </Badge>
-                <Badge leftSection={<ShieldCheck size={13} />} variant="white" color="dark">
+                <Badge leftSection={<ShieldCheck size={13} />} color="teal">
                   Flexible planning
+                </Badge>
+                <Badge leftSection={<Sparkles size={13} />} color="pink">
+                  Fresh escapes
                 </Badge>
               </Group>
 
@@ -52,12 +117,48 @@ const Landing = () => {
                   letterSpacing: 0,
                 }}
               >
-                Travel beyond the booking.
+                Travel beyond the{" "}
+                <span
+                  style={{
+                    color: "#67e8f9",
+                    textShadow: "0 0 24px rgba(34, 211, 238, 0.55)",
+                  }}
+                >
+                  booking.
+                </span>
               </Title>
 
-              <Text c="gray.2" size="xl" maw={520}>
-                Compare hotels, dates, and prices in one smooth search.
+              <Text c="gray.1" size="xl" maw={520}>
+                Find beautiful stays, compare dates, and start your next trip with a cleaner booking experience.
               </Text>
+
+              <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="sm">
+                {LANDING_HIGHLIGHTS.map((item) => (
+                  <Paper
+                    key={item.title}
+                    className="trip-ease-highlight"
+                    radius="md"
+                    p="md"
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.15)",
+                      border: "1px solid rgba(255, 255, 255, 0.24)",
+                      backdropFilter: "blur(10px)",
+                    }}
+                  >
+                    <Stack gap={6}>
+                      <ThemeIcon variant="white" color="dark" radius="md" size="md">
+                        {item.icon}
+                      </ThemeIcon>
+                      <Text c="white" fw={800} size="sm">
+                        {item.title}
+                      </Text>
+                      <Text c="gray.2" size="xs">
+                        {item.description}
+                      </Text>
+                    </Stack>
+                  </Paper>
+                ))}
+              </SimpleGrid>
             </Stack>
           </Grid.Col>
 
@@ -67,8 +168,9 @@ const Landing = () => {
               radius="lg"
               p={{ base: "md", md: "xl" }}
               style={{
-                backgroundColor: "rgba(255, 255, 255, 0.97)",
-                border: "1px solid rgba(255, 255, 255, 0.55)",
+                backgroundColor: "rgba(255, 255, 255, 0.98)",
+                border: "1px solid rgba(255, 255, 255, 0.72)",
+                boxShadow: "0 24px 70px rgba(15, 23, 42, 0.28)",
               }}
             >
               <Stack gap="md">
@@ -81,7 +183,9 @@ const Landing = () => {
                       Choose your destination and travel dates.
                     </Text>
                   </div>
-                  <Badge variant="light">Best matches</Badge>
+                  <Badge variant="gradient" gradient={{ from: "teal", to: "pink", deg: 90 }}>
+                    Best matches
+                  </Badge>
                 </Group>
 
                 <Select
@@ -133,9 +237,32 @@ const Landing = () => {
                   radius="md"
                 />
 
-                <Button size="lg" radius="md" leftSection={<Search size={18} />} onClick={handleSearch} fullWidth>
+                <Button
+                  size="lg"
+                  radius="md"
+                  variant="gradient"
+                  gradient={{ from: "cyan", to: "violet", deg: 90 }}
+                  leftSection={<Search size={18} />}
+                  onClick={handleSearch}
+                  fullWidth
+                  style={{
+                    backgroundSize: "220% 220%",
+                    animation: "tripEaseShine 5s ease infinite",
+                  }}
+                >
                   Search hotels
                 </Button>
+
+                <Divider />
+
+                <Group justify="space-between" gap="sm">
+                  <Text size="sm" c="dimmed">
+                    Built for simple, quick hotel discovery.
+                  </Text>
+                  <Badge color="cyan" variant="light">
+                    TripEase
+                  </Badge>
+                </Group>
               </Stack>
             </Paper>
           </Grid.Col>
