@@ -16,7 +16,16 @@ import {
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import dayjs from "dayjs";
-import { CalendarDays, MapPin, Route, Search, ShieldCheck, Sparkles, Star, Users } from "lucide-react";
+import {
+  CalendarDays,
+  MapPin,
+  Route,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Users,
+} from "lucide-react";
 import { useHotel } from "../hotels/provider";
 
 const LANDING_HIGHLIGHTS = [
@@ -38,8 +47,18 @@ const LANDING_HIGHLIGHTS = [
 ];
 
 const Landing = () => {
-  const { cities, location, setLocation, checkIn, setCheckIn, checkOut, setCheckOut, adults, setAdults, handleSearch } =
-    useHotel();
+  const {
+    cities,
+    location,
+    setLocation,
+    checkIn,
+    setCheckIn,
+    checkOut,
+    setCheckOut,
+    adults,
+    setAdults,
+    handleSearch,
+  } = useHotel();
 
   const cityOptions = cities.map((city) => ({
     value: city.name,
@@ -97,7 +116,11 @@ const Landing = () => {
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Stack gap="lg" maw={620}>
               <Group gap="xs">
-                <Badge leftSection={<Star size={13} />} variant="white" color="dark">
+                <Badge
+                  leftSection={<Star size={13} />}
+                  variant="white"
+                  color="dark"
+                >
                   Curated stays
                 </Badge>
                 <Badge leftSection={<ShieldCheck size={13} />} color="teal">
@@ -117,7 +140,7 @@ const Landing = () => {
                   letterSpacing: 0,
                 }}
               >
-                Travel beyond the{" "}
+                Travel beyond your{" "}
                 <span
                   style={{
                     color: "#67e8f9",
@@ -129,7 +152,8 @@ const Landing = () => {
               </Title>
 
               <Text c="gray.1" size="xl" maw={520}>
-                Find beautiful stays, compare dates, and start your next trip with a cleaner booking experience.
+                Find beautiful stays, compare dates, and start your next trip
+                with a cleaner booking experience.
               </Text>
 
               <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="sm">
@@ -146,7 +170,12 @@ const Landing = () => {
                     }}
                   >
                     <Stack gap={6}>
-                      <ThemeIcon variant="white" color="dark" radius="md" size="md">
+                      <ThemeIcon
+                        variant="white"
+                        color="dark"
+                        radius="md"
+                        size="md"
+                      >
                         {item.icon}
                       </ThemeIcon>
                       <Text c="white" fw={800} size="sm">
@@ -183,7 +212,10 @@ const Landing = () => {
                       Choose your destination and travel dates.
                     </Text>
                   </div>
-                  <Badge variant="gradient" gradient={{ from: "teal", to: "pink", deg: 90 }}>
+                  <Badge
+                    variant="gradient"
+                    gradient={{ from: "teal", to: "pink", deg: 90 }}
+                  >
                     Best matches
                   </Badge>
                 </Group>
@@ -220,7 +252,11 @@ const Landing = () => {
                       leftSection={<CalendarDays size={17} />}
                       value={checkOut}
                       onChange={setCheckOut}
-                      minDate={checkIn ? dayjs(checkIn).add(1, "day").toDate() : new Date()}
+                      minDate={
+                        checkIn
+                          ? dayjs(checkIn).add(1, "day").toDate()
+                          : new Date()
+                      }
                       size="md"
                       radius="md"
                     />
