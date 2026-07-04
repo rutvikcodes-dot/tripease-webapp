@@ -27,6 +27,7 @@ import {
   Users,
 } from "lucide-react";
 import { useHotel } from "../hotels/provider";
+import { BRAND_NAME } from "../../utils/constants";
 
 const LANDING_HIGHLIGHTS = [
   {
@@ -296,7 +297,7 @@ const Landing = () => {
                     Built for simple, quick hotel discovery.
                   </Text>
                   <Badge color="cyan" variant="light">
-                    TripEase
+                    {BRAND_NAME}
                   </Badge>
                 </Group>
               </Stack>

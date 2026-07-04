@@ -18,6 +18,7 @@ import dayjs from "dayjs";
 import { useHotel } from "../hotels/provider";
 import { useRoom } from "../rooms/provider";
 import { useBooking } from "./provider";
+import { formatCurrency } from "../../utils/constants";
 
 export default function BookingDetails() {
   const {
@@ -121,12 +122,12 @@ export default function BookingDetails() {
                 <Stack gap="xs">
                   <Group justify="space-between">
                     <Text c="dimmed">Room subtotal</Text>
-                    <Text fw={500}>₹{pricing.subtotal.toLocaleString()}</Text>
+                    <Text fw={500}>{formatCurrency(pricing.subtotal)}</Text>
                   </Group>
 
                   <Group justify="space-between">
                     <Text c="dimmed">Taxes & fees</Text>
-                    <Text fw={500}>₹{pricing.taxes.toLocaleString()}</Text>
+                    <Text fw={500}>{formatCurrency(pricing.taxes)}</Text>
                   </Group>
 
                   <Divider my="xs" />
@@ -135,7 +136,7 @@ export default function BookingDetails() {
                     <Text fw={700}>Total</Text>
 
                     <Text fw={700} size="xl" c="blue">
-                      ₹{pricing.total.toLocaleString()}
+                      {formatCurrency(pricing.total)}
                     </Text>
                   </Group>
                 </Stack>

@@ -8,6 +8,7 @@ import BookingDetails from "../pages/booking/BookingDetails.js";
 import MyBookings from "../pages/booking/MyBookings.js";
 import BookingSuccess from "../pages/booking/BookingSuccess.js";
 import CheckoutDetails from "../pages/payment/CheckoutDetails.js";
+import AiHotelSearch from "../pages/ai/AiHotelSearch.js";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Landing />} />
 
         <Route path="/hotels" element={<HotelsList />} />
+
+        <Route path="/ai-search" element={<AiHotelSearch />} />
 
         <Route path="/hotel-details/:id" element={<HotelDetails />} />
 

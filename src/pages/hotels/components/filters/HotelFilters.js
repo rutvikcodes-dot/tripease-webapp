@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 
 import { useHotel } from "../../provider";
+import { formatCurrency } from "../../../../utils/constants";
 
 const HotelFilters = () => {
   const {
@@ -75,7 +76,7 @@ const HotelFilters = () => {
           />
 
           <Text size="sm" mt="xs" c="dimmed">
-            ₹{filters.minPrice} - ₹{filters.maxPrice}
+            {formatCurrency(filters.minPrice)} - {formatCurrency(filters.maxPrice)}
           </Text>
         </div>
 

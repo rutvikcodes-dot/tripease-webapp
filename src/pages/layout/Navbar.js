@@ -2,11 +2,12 @@ import { ActionIcon, Box, Burger, Button, Collapse, Divider, Group, NumberInput,
 import { DatePickerInput } from "@mantine/dates";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import dayjs from "dayjs";
-import { CalendarDays, LogOut, Luggage, MapPin, Search, UserRound, Users } from "lucide-react";
+import { Bot, CalendarDays, LogOut, Luggage, MapPin, Search, UserRound, Users } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/provider";
 import { useHotel } from "../hotels/provider";
 import AuthPopover from "../auth";
+import { BRAND_NAME } from "../../utils/constants";
 
 function SearchControls({ stacked = false, onSearch }) {
   const { cities, location, setLocation, checkIn, setCheckIn, checkOut, setCheckOut, adults, setAdults, handleSearch } =
@@ -104,7 +105,7 @@ export default function Navbar() {
   const isMobile = useMediaQuery("(max-width: 860px)");
   const { pathname } = useLocation();
   const { user, logout, goToLanding } = useAuth();
-  const showSearch = pathname !== "/";
+  const showSearch = pathname !== "/" && pathname !== "/ai-search";
 
   return (
     <Box
@@ -122,20 +123,27 @@ export default function Navbar() {
         <Group gap="xs" wrap="nowrap">
           <img
             src="/favicon.png"
-            alt="TripEase"
+            alt={BRAND_NAME}
             width={36}
             height={36}
             style={{ borderRadius: 8, cursor: "pointer" }}
             onClick={goToLanding}
           />
           <Text fw={800} size="lg" style={{ userSelect: "none", cursor: "pointer" }} onClick={goToLanding}>
-            TripEase
+            {BRAND_NAME}
           </Text>
         </Group>
 
         {showSearch && !isMobile && <SearchControls />}
 
         <Group gap="sm" wrap="nowrap">
+          <Button component={Link} to="/ai-search" variant="light" leftSection={<Bot size={16} />} visibleFrom="sm">
+            AI Search
+          </Button>
+          <ActionIcon component={Link} to="/ai-search" aria-label="AI search" variant="light" size="lg" hiddenFrom="sm">
+            <Bot size={18} />
+          </ActionIcon>
+
           {!user ? (
             <AuthPopover />
           ) : (

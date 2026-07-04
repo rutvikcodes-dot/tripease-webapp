@@ -6,7 +6,7 @@ import { useHotel } from "../hotels/provider";
 import { useRoom } from "../rooms/provider";
 import { createBooking } from "../../api/bookingApi";
 import { useNavigate } from "react-router-dom";
-import { BOOKING_GUEST_DETAILS_STORAGE_KEY } from "../../utils/constants";
+import { BOOKING_GUEST_DETAILS_STORAGE_KEY, BRAND_NAME } from "../../utils/constants";
 
 const PaymentContext = createContext();
 
@@ -103,7 +103,7 @@ export function PaymentProvider({ children }) {
       key: razorpayKey,
       amount: amount * 100,
       currency: "INR",
-      name: "TripEase",
+      name: BRAND_NAME,
       method: {
         upi: true,
         card: true,

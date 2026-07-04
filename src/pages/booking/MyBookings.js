@@ -32,14 +32,7 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "../auth/provider";
 import { useBooking } from "./provider";
-
-const formatCurrency = (value) => {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  }).format(Number(value || 0));
-};
+import { BRAND_NAME, formatCurrency } from "../../utils/constants";
 
 const formatDate = (value) => {
   return value ? dayjs(value).format("DD MMM YYYY") : "Not available";
@@ -216,7 +209,7 @@ export default function MyBookings() {
               Your confirmed stays will appear here after you sign in.
             </Text>
             <Button component={Link} to="/" radius="md">
-              Back to TripEase
+              Back to {BRAND_NAME}
             </Button>
           </Stack>
         </Paper>

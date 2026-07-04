@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import { useHotel } from "../hotels/provider";
 import { useRoom } from "../rooms/provider";
 import { usePayment } from "./provider";
+import { formatCurrency } from "../../utils/constants";
 
 export default function CheckoutDetails() {
   const {
@@ -100,7 +101,7 @@ export default function CheckoutDetails() {
                 loading={isBookingLoading}
                 disabled={isBookingLoading}
               >
-                Pay ₹{pricing.total.toLocaleString()}
+                Pay {formatCurrency(pricing.total)}
               </Button>
 
               <Text size="xs" c="dimmed" ta="center">
@@ -142,12 +143,12 @@ export default function CheckoutDetails() {
 
               <Group justify="space-between" mt="md">
                 <Text c="dimmed">Subtotal</Text>
-                <Text>₹{pricing.subtotal.toLocaleString()}</Text>
+                <Text>{formatCurrency(pricing.subtotal)}</Text>
               </Group>
 
               <Group justify="space-between">
                 <Text c="dimmed">Taxes & fees</Text>
-                <Text>₹{pricing.taxes.toLocaleString()}</Text>
+                <Text>{formatCurrency(pricing.taxes)}</Text>
               </Group>
 
               <Group
@@ -160,7 +161,7 @@ export default function CheckoutDetails() {
                 <Text fw={700}>Total</Text>
 
                 <Text fw={700} c="blue">
-                  ₹{pricing.total.toLocaleString()}
+                  {formatCurrency(pricing.total)}
                 </Text>
               </Group>
             </Stack>

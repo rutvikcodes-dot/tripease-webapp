@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useHotel } from "../hotels/provider";
 import { useRoom } from "./provider";
 import { useBooking } from "../booking/provider";
+import { formatCurrency } from "../../utils/constants";
 
 export default function RoomDetails() {
   const navigate = useNavigate();
@@ -62,11 +63,11 @@ export default function RoomDetails() {
           <Card withBorder radius="md" p="xl" w={300}>
             <Stack gap="xs">
               <Title order={2} c="blue">
-                ₹{pricing.total.toLocaleString()}
+                {formatCurrency(pricing.total)}
               </Title>
 
               <Text size="sm" c="dimmed" mb="lg">
-                ₹{selectedRoom.pricePerNight.toLocaleString()} / night
+                {formatCurrency(selectedRoom.pricePerNight)} / night
               </Text>
 
               <Stack
@@ -83,7 +84,7 @@ export default function RoomDetails() {
                   </Text>
 
                   <Text size="sm" fw={500}>
-                    ₹{pricing.subtotal.toLocaleString()}
+                    {formatCurrency(pricing.subtotal)}
                   </Text>
                 </Group>
 
@@ -93,7 +94,7 @@ export default function RoomDetails() {
                   </Text>
 
                   <Text size="sm" fw={500}>
-                    ₹{pricing.taxes.toLocaleString()}
+                    {formatCurrency(pricing.taxes)}
                   </Text>
                 </Group>
 
@@ -108,7 +109,7 @@ export default function RoomDetails() {
                   <Text fw={700}>Total</Text>
 
                   <Text fw={700} c="blue">
-                    ₹{pricing.total.toLocaleString()}
+                    {formatCurrency(pricing.total)}
                   </Text>
                 </Group>
               </Stack>

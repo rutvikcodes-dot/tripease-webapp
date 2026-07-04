@@ -14,6 +14,7 @@ import {
 } from "@mantine/core";
 import { AtSign, LockKeyhole, Plane, Sparkles, UserRound, X } from "lucide-react";
 import { useAuth } from "./provider";
+import { BRAND_NAME } from "../../utils/constants";
 
 export default function AuthPopover() {
   const { form, errors, opened, setOpened, isLogin, loading, updateField, submit, toggleMode, handleModeChange } =
@@ -165,7 +166,7 @@ export default function AuthPopover() {
               boxShadow: "0 14px 30px rgba(37, 99, 235, 0.22)",
             }}
           >
-            {isLogin ? "Login to TripEase" : "Create account"}
+            {isLogin ? `Login to ${BRAND_NAME}` : "Create account"}
           </Button>
 
           <Button variant="subtle" radius="xl" onClick={toggleMode}>
